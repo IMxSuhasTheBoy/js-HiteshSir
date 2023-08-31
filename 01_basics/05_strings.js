@@ -50,7 +50,13 @@ console.log(strCopy);
 //.........................................
 
 console.log(eval("2 + 2"));
+let testStr0 = 2 + 2;
+testStr0 = eval("2 + 2");
+console.log(typeof testStr0, "//4");
 // Expected output: 4
+
+let testStr = eval(new String("2 + 2"));
+console.log(typeof testStr);
 
 console.log(eval(new String("2 + 2")));
 // Expected output: 2 + 2
