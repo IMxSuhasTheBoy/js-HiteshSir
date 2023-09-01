@@ -4,9 +4,9 @@
 (function chai(){
     // named IIFE
     console.log(`DB CONNECTED`);
-})();
+})();                                        // decleard & invoked as soon as file runs
 
 ( (name) => {
     console.log(`DB CONNECTED TWO ${name}`);
-} )('hitesh')
+} )('hitesh')                                  // taken parameter on invocation arg
 
