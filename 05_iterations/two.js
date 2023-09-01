@@ -7,13 +7,14 @@ let index = 0
 
 let myArray = ['flash', "batman", "superman"]
 
-let arr = 0
-while (arr < myArray.length) {
-    //console.log(`Value is ${myArray[arr]}`);
-    arr = arr + 1
+let arrIdx = 0
+while (arrIdx < myArray.length) {
+    // console.log(`Value is ${myArray[arrIdx]}`);
+    arrIdx = arrIdx + 1
 }
 
 let score = 11
+// score = 1
 
 do {
     console.log(`Score is ${score}`);
