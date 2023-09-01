@@ -33,16 +33,16 @@ if (true) {
     const username = "hitesh"
     if (username === "hitesh") {
         const website = " youtube"
-        // console.log(username + website);
+        //  console.log(username + website);
     }
     // console.log(website);
 }
 
-// console.log(username);
+//  console.log(username);
 
 
-// ++++++++++++++++++ interesting ++++++++++++++++++
-
+// // ++++++++++++++++++ interesting ++++++++++++++++++
+// ------------hoisting func------
 
 console.log(addone(5))
 
@@ -52,7 +52,7 @@ function addone(num){
 
 
 
-addTwo(5)
+addTwo(5)       // func expression , trying to access it but it's decleared later
 const addTwo = function(num){
     return num + 2
 }
