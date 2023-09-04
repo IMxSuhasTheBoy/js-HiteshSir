@@ -74,9 +74,11 @@ form.addEventListener("submit", function (e) {
 const clock = document.getElementById("clock");
 // const clock = document.querySelector('#clock')
 
+//got time, but it's not working like a runing clock -> make it running on every second with setInterval
+
 setInterval(function () {
   let date = new Date();
-  // console.log(date.toLocaleTimeString());
+  // console.log(date.toLocaleString());
   clock.innerHTML = date.toLocaleTimeString();
 }, 1000);
 ```
@@ -84,41 +86,45 @@ setInterval(function () {
 ## project 4 solution
 
 ```javascript
+// generating A random number between 1 to 100
 let randomNumber = parseInt(Math.random() * 100 + 1);
 
+//
 const submit = document.querySelector("#subt");
-const userInput = document.querySelector("#guessField");
-const guessSlot = document.querySelector(".guesses");
-const remaining = document.querySelector(".lastResult");
-const lowOrHi = document.querySelector(".lowOrHi");
-const startOver = document.querySelector(".resultParas");
+const userInput = document.querySelector("#guessField"); // selected field, input value to be get later in function
+const guessSlot = document.querySelector(".guesses"); // to show the guesses user made
+const remaining = document.querySelector(".lastResult"); // to show remaining attempts number
+const lowOrHi = document.querySelector(".lowOrHi"); // to show the userinput is lower/higher than the random number
+const startOver = document.querySelector(".resultParas"); // to show after all attempts over/ userInput is matched with the random number
 
 const p = document.createElement("p");
 
-let prevGuess = [];
-let numGuess = 1;
+let prevGuess = []; // to store the userInputs for update & show in guessSlot, also to handle game rules using validations
+let numGuess = 1; // to track the attempts, for terminate on limit 10
 
-let playGame = true;
+let playGame = true; // conventional game designed  to allow to play/not to play
 
 if (playGame) {
-  submit.addEventListener("click", function (e) {
+  submit.addEventListener("click", (e) => {
     e.preventDefault();
     const guess = parseInt(userInput.value);
-    console.log(guess);
+    // console.log(guess)
     validateGuess(guess);
   });
 }
 
+//function for checking valid a number input, to procced
 function validateGuess(guess) {
   if (isNaN(guess)) {
-    alert("PLease enter a valid number");
+    alert("Please enter a valid number!");
   } else if (guess < 1) {
-    alert("PLease enter a number more than 1");
+    alert("Please enter a number more than 1");
   } else if (guess > 100) {
-    alert("PLease enter a  number less than 100");
+    alert("Please enter a number less than 100");
   } else {
     prevGuess.push(guess);
-    if (numGuess === 11) {
+    if (numGuess === 10) {
+      // when attempt becomes more than 10
       displayGuess(guess);
       displayMessage(`Game Over. Random number was ${randomNumber}`);
       endGame();
@@ -129,46 +135,50 @@ function validateGuess(guess) {
   }
 }
 
+//function for checking guess with the random number
 function checkGuess(guess) {
   if (guess === randomNumber) {
     displayMessage(`You guessed it right`);
     endGame();
   } else if (guess < randomNumber) {
-    displayMessage(`Number is TOOO low`);
+    displayMessage(`Number is Too low`);
   } else if (guess > randomNumber) {
-    displayMessage(`Number is TOOO High`);
+    displayMessage(`Number is Too high`);
   }
 }
 
+//function for display guess dom mainipulation
 function displayGuess(guess) {
-  userInput.value = "";
-  guessSlot.innerHTML += `${guess}, `;
+  // cleanUp & updating displaying values
+  userInput.value = ""; //cleanUp the field after checking & calling display functions
+  guessSlot.innerHTML += `${guess}   `; // pushing the value
   numGuess++;
-  remaining.innerHTML = `${11 - numGuess} `;
+  remaining.innerHTML = `${11 - numGuess}`;
 }
 
+//function for all other final dom manipulation
 function displayMessage(message) {
-  lowOrHi.innerHTML = `<h2>${message}</h2>`;
+  lowOrHi.innerHTML = `<h2>${message}</h2>`; // message calls & values are avilable in parameter here, as given from the checkGuess func according to conditons
 }
 
 function endGame() {
   userInput.value = "";
-  userInput.setAttribute("disabled", "");
+  userInput.setAttribute("disabled", ""); // lock the input
   p.classList.add("button");
-  p.innerHTML = `<h2 id="newGame">Start new Game</h2>`;
+  p.innerHTML = '<h2 id="newGame">Start new Game</h2>';
   startOver.appendChild(p);
   playGame = false;
   newGame();
 }
-
 function newGame() {
   const newGameButton = document.querySelector("#newGame");
-  newGameButton.addEventListener("click", function (e) {
+  newGameButton.addEventListener("click", (e) => {
     randomNumber = parseInt(Math.random() * 100 + 1);
     prevGuess = [];
     numGuess = 1;
     guessSlot.innerHTML = "";
-    remaining.innerHTML = `${11 - numGuess} `;
+    remaining.innerHTML = "";
+    remaining.innerHTML = `${10 - numGuess}`;
     userInput.removeAttribute("disabled");
     startOver.removeChild(p);
 
