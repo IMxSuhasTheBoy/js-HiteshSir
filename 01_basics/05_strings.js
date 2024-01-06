@@ -5,7 +5,7 @@ const repoCount = 50;
 
 // console.log(`Hello my name is ${name} and my repo count is ${repoCount}`);
 
-const gameName = new String("hitesh-hc-com");
+const gameName = new String("imx-hitesh-hc-com");
 
 // console.log(gameName[0]);
 console.log(gameName.__proto__);
@@ -31,7 +31,7 @@ const url = "https://hitesh.com/hitesh%20choudhary"; // %20 url encoding exmaple
 
 // console.log(url.includes("sundar"));
 
-console.log(gameName.split("-")); // "hitesh-hc-com"
+console.log(gameName.split("-")); // "imx-hitesh-hc-com"
 const str = "The quick brown fox jumps over the lazy dog.";
 
 const words = str.split(" ");
